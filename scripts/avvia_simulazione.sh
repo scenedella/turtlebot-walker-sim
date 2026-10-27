@@ -86,10 +86,10 @@ read -rp "Scegli una modalità [1-4]: " mode
 echo ""
 
 # --- 4. Posizione di partenza del robot ---
-read -rp "Coordinata X di partenza del robot [default -2.0]: " START_X
-read -rp "Coordinata Y di partenza del robot [default -0.5]: " START_Y
-START_X=${START_X:--2.0}
-START_Y=${START_Y:--0.5}
+read -rp "Coordinata X di partenza del robot [default 2.0]: " START_X
+read -rp "Coordinata Y di partenza del robot [default 2.0]: " START_Y
+START_X=${START_X:-2.0}
+START_Y=${START_Y:-2.0}
 
 # Controllo (non bloccante) che il punto sia in area libera sulla mappa
 python3 - "$YAML_FILE" "$START_X" "$START_Y" "$MAPS_DIR" << 'PYEOF' || true
@@ -118,7 +118,7 @@ echo ""
 
 # --- 5. Avvio in base alla modalità ---
 source /opt/ros/humble/setup.bash
-export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH:+$GAZEBO_MODEL_PATH:}/opt/ros/humble/share/turtlebot3_gazebo/models:$HOME/.gazebo/models
+export GAZEBO_MODEL_PATH=$WS/models:${GAZEBO_MODEL_PATH:+$GAZEBO_MODEL_PATH:}/opt/ros/humble/share/turtlebot3_gazebo/models:$HOME/.gazebo/models
 source "$WS/install/setup.bash" 2>/dev/null || echo "Nota: workspace non ancora compilato (colcon build)."
 
 case $mode in

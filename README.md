@@ -14,6 +14,7 @@ Progetto di tesi magistrale in Ingegneria dell'Automazione Industriale
 |---|---|
 | `scripts/` | `avvia_simulazione.sh` (menu di avvio), generatori di linee/mobili/scale, `linee_config.py` (definizione delle linee gialle) |
 | `maps/` | Mappe (`.pgm` + `.yaml`) e `pgm_to_world.py` (da mappa a mondo Gazebo) |
+| `models/` | Modelli 3D dei mobili usati nel mondo (letti, armadi, scrivanie, libreria, bagno) |
 | `worlds/` | Mondo Gazebo `piano_sopra_riki.world` (piano sopraelevato, scale, mobili, linee) |
 | `src/turtlebot_controller/` | Pacchetto ROS 2: nodi di navigazione, registrazione dati, grafici, teleoperazione a frecce |
 | `risultati/` | Qui vengono salvati CSV e grafici delle prove con le frecce (non versionati) |
@@ -23,7 +24,6 @@ Progetto di tesi magistrale in Ingegneria dell'Automazione Industriale
 - Ubuntu 22.04 (anche su Windows con WSL2)
 - ROS 2 Humble, Nav2, TurtleBot3, Gazebo Classic 11
 - Python 3 con `pandas`, `matplotlib`, `numpy`
-- Connessione a Internet al primo avvio (Gazebo scarica i modelli dei mobili, vedi sotto)
 
 Installazione dei pacchetti (ROS 2 Humble già installato):
 
@@ -75,10 +75,9 @@ Il menu chiede, in ordine:
    - `4` Gazebo + RViz (più pesante)
 4. **Posizione di partenza** del robot (invio per quella proposta).
 
-Il primo avvio con Gazebo può richiedere uno-due minuti: Gazebo scarica da Internet i
-modelli dei mobili (`NormalBed`, `MetalCabinet`, `BookshelfNew`, `OfficeDesk`, `Bathtub`,
-`Toilet`, `BathroomSink`) e li conserva in `~/.gazebo/models`. Gli avvii successivi sono
-immediati. **Ctrl+C** nel terminale del menu chiude tutto.
+I mobili (letti, armadi, scrivanie, libreria, bagno) sono nella cartella `models/` del progetto:
+il menu la aggiunge da solo a `GAZEBO_MODEL_PATH`, quindi non serve scaricare nulla. Il primo avvio
+di Gazebo può comunque richiedere qualche decina di secondi. **Ctrl+C** nel terminale del menu chiude tutto.
 
 > Il menu riscrive le linee gialle dentro `worlds/piano_sopra_riki.world`: dopo un avvio
 > `git status` può mostrare il file come modificato. È normale.
@@ -128,7 +127,7 @@ e genera da solo il mondo Gazebo con `maps/pgm_to_world.py`.
 
 - **`Package 'turtlebot_controller' not found`**: manca `source install/setup.bash`.
 - **Gazebo non parte o è lento**: usare la modalità 1 o 2; chiudere altre finestre pesanti.
-- **I mobili non compaiono**: verificare la connessione Internet e riavviare (il download dei modelli riparte).
+- **I mobili non compaiono**: avviare Gazebo sempre dal menu (`bash scripts/avvia_simulazione.sh`), che imposta il percorso di `models/`.
 - Dopo `wsl --shutdown` o un crash, chiudere tutto e rilanciare il menu da zero.
 
 ## Crediti
@@ -139,6 +138,9 @@ Questa versione estende la simulazione con mappe personalizzabili, piano soprael
 scale, mobili, linee gialle di riferimento, guida manuale e analisi dello scostamento.
 
 Autori di questa versione: Simone Cenedella e Riccardo Catelli.
+
+I modelli 3D in `models/` provengono dal database dei modelli di Gazebo (https://app.gazebosim.org/dashboard);
+restano valide le licenze indicate dai rispettivi autori.
 
 ## Licenza
 
