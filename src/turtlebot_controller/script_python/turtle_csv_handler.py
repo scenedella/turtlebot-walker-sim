@@ -122,7 +122,14 @@ class DataLoggerNode(Node):
         # Ottieni la data corrente nel formato YYYYMMDD
         date_str = datetime.now().strftime('%Y%m%d')
         # Percorso della cartella dove salvare i file
-        ws = os.environ.get('TURTLEBOT_WS') or os.getcwd()
+        ws = os.environ.get('TURTLEBOT_WS')
+        if not ws:
+            try:
+                from ament_index_python.packages import get_package_prefix
+                # <ws>/install/turtlebot_controller -> <ws>
+                ws = os.path.dirname(os.path.dirname(get_package_prefix('turtlebot_controller')))
+            except Exception:
+                ws = os.getcwd()
         folder_path = os.path.join(ws, 'src', 'turtlebot_controller', 'robot_data_csv')
         os.makedirs(folder_path, exist_ok=True)
         

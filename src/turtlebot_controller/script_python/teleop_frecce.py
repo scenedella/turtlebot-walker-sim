@@ -15,6 +15,10 @@ def _trova_ws():
     env = os.environ.get('TURTLEBOT_WS')
     if env and os.path.isfile(os.path.join(env, 'scripts', 'linee_config.py')):
         return env
+    qui = os.path.dirname(os.path.abspath(__file__))
+    cand = os.path.abspath(os.path.join(qui, '..', '..', '..'))
+    if os.path.isfile(os.path.join(cand, 'scripts', 'linee_config.py')):
+        return cand
     d = os.getcwd()
     while True:
         if os.path.isfile(os.path.join(d, 'scripts', 'linee_config.py')):

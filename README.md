@@ -107,13 +107,18 @@ python3 genera_grafici_png.py
 
 ## 5. Guida manuale con le frecce e linea gialla
 
-Con la simulazione avviata (e una linea scelta nel menu):
+Con la simulazione già avviata (punto 3, con una linea scelta nel menu), in un **nuovo terminale**:
 
 ```bash
-python3 src/turtlebot_controller/script_python/teleop_frecce.py
+source /opt/ros/humble/setup.bash
+source ~/turtlebot-walker-sim/install/setup.bash
+python3 ~/turtlebot-walker-sim/src/turtlebot_controller/script_python/teleop_frecce.py
 ```
 
-Frecce su/giù = avanti/indietro, sinistra/destra = ruota, spazio = stop, `q` = esci.
+(sostituire `~/turtlebot-walker-sim` con la cartella in cui è stato scaricato il progetto;
+il comando funziona da qualunque cartella.)
+
+Comandi: freccia su/giù = avanti/indietro, freccia sinistra/destra = ruota, spazio = stop, `q` = esci.
 Passando sulla linea gialla attiva, a fine percorso vengono salvati in `risultati/`
 un CSV e un grafico dello scostamento dalla linea. Le linee sono definite in
 `scripts/linee_config.py`.
