@@ -1,0 +1,7 @@
+image: planimetria_stanza_rotated.pgm # Dim: 1918:858
+resolution: 0.007577
+#origin: [-7.1, -2.89, 0.000000]
+origin: [-3.61, -7.1, 0.000000]
+negate: 1
+occupied_thresh: 0.7
+free_thresh: 0.196

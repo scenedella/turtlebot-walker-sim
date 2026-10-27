@@ -1,0 +1,22 @@
+# Generati da colcon (contengono percorsi del PC su cui si compila)
+build/
+install/
+log/
+
+# Python / editor / sistema
+__pycache__/
+*.pyc
+.vscode/
+.DS_Store
+__MACOSX/
+
+# Backup e stato temporaneo generati dagli script
+*.backup
+*.world.backup
+linea_attiva.txt
+
+# Risultati delle prove (CSV/PNG): si tengono solo le cartelle vuote
+risultati/*
+!risultati/.gitkeep
+src/turtlebot_controller/robot_data_csv/*
+!src/turtlebot_controller/robot_data_csv/.gitkeep
