@@ -6,7 +6,7 @@ domestica (piano sopraelevato, scale, mobili) e si può anche guidare a mano con
 seguendo una linea gialla di riferimento, misurando di quanto ci si scosta.
 
 Progetto di tesi magistrale in Ingegneria dell'Automazione Industriale
-(Università degli Studi di Brescia, corso di Meccatronica, prof. Alberto Borboni).
+(Università degli Studi di Brescia, corso di Laboratorio di Robotica Industriale e Macchine, prof. Roberto Pagani).
 
 ## Contenuto
 
