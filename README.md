@@ -1,6 +1,6 @@
 # TurtleBot Walker Sim
 
-Simulazione in **ROS 2 Humble + Nav2 + Gazebo** di un TurtleBot3 (Waffle) usato come
+Simulazione in **ROS 2 Humble + Nav2 + Gazebo** di un TurtleBot3 (Burger) usato come
 deambulatore per la riabilitazione: il robot naviga in autonomia in una planimetria
 domestica (piano sopraelevato, scale, mobili) e si può anche guidare a mano con le frecce
 seguendo una linea gialla di riferimento, misurando di quanto ci si scosta.
@@ -41,7 +41,7 @@ pip3 install --user pandas matplotlib numpy
 git clone https://github.com/scenedella/turtlebot-walker-sim.git
 cd turtlebot-walker-sim
 source /opt/ros/humble/setup.bash
-export TURTLEBOT3_MODEL=waffle
+export TURTLEBOT3_MODEL=burger
 colcon build
 source install/setup.bash
 ```

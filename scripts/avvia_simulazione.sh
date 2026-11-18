@@ -128,7 +128,7 @@ case $mode in
     PIDS+=($!)
     echo "Attendo che Gazebo sia pronto..."
     for i in $(seq 1 30); do
-        if ros2 service list 2>/dev/null | grep -q spawn_entity; then break; fi
+        if timeout 10 ros2 service list --no-daemon 2>/dev/null | grep -q spawn_entity; then break; fi
         sleep 2
     done
     ;;
@@ -138,15 +138,15 @@ case $mode in
     PIDS+=($!)
     echo "Attendo che Gazebo sia pronto (può volerci un minuto)..."
     for i in $(seq 1 120); do
-        if ros2 service list 2>/dev/null | grep -q spawn_entity; then break; fi
+        if timeout 10 ros2 service list --no-daemon 2>/dev/null | grep -q spawn_entity; then break; fi
         sleep 2
     done
     ;;
 esac
 
 echo "Creo il robot nella posizione di partenza..."
-ros2 run gazebo_ros spawn_entity.py -entity turtlebot3_waffle \
-    -file /opt/ros/humble/share/turtlebot3_gazebo/models/turtlebot3_waffle/model.sdf \
+ros2 run gazebo_ros spawn_entity.py -entity turtlebot3_burger \
+    -file /opt/ros/humble/share/turtlebot3_gazebo/models/turtlebot3_burger/model.sdf \
     -x "$START_X" -y "$START_Y" -z "$SPAWN_Z" -timeout 120
 echo ""
 
@@ -158,5 +158,5 @@ echo "Avvio Nav2 (RViz: $USE_RVIZ)..."
 echo "Premi Ctrl+C per terminare tutto."
 ros2 launch nav2_bringup tb3_simulation_launch.py \
     use_simulator:=False use_rviz:="$USE_RVIZ" \
-    map:="$YAML_FILE"
+    map:="$YAML_FILE" robot_name:=turtlebot3_burger robot_sdf:=/opt/ros/humble/share/turtlebot3_gazebo/models/turtlebot3_burger/model.sdf
 
